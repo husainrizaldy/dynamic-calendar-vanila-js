@@ -1,8 +1,10 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const calendarGrid = document.getElementById("calendarGrid");
     const prevMonthBtn = document.getElementById("prevMonthBtn");
     const nextMonthBtn = document.getElementById("nextMonthBtn");
     const monthYearElement = document.getElementById("monthYear");
+
+    let selectedDay = null;
 
     function createCalendar(year, month) {
         const daysInMonth = new Date(year, month + 1, 0).getDate();
@@ -16,8 +18,14 @@ document.addEventListener("DOMContentLoaded", function() {
         daysOfWeek.forEach(day => {
             const dayElement = document.createElement("div");
             dayElement.classList.add("day");
+            dayElement.classList.add("days-head");
             dayElement.textContent = day;
             calendarGrid.appendChild(dayElement);
+
+            dayElement.addEventListener("click", function () {
+                selectedDay = (selectedDay === day) ? null : day;
+                renderCalendar();
+            });
         });
 
         // Create days
@@ -31,21 +39,27 @@ document.addEventListener("DOMContentLoaded", function() {
             dayElement.classList.add("day");
             dayElement.textContent = day;
 
-            // Highlight today's date
             const today = new Date();
             if (year === today.getFullYear() && month === today.getMonth() && day === today.getDate()) {
                 dayElement.classList.add("today");
             }
 
-            dayElement.addEventListener("click", function() {
-                // Clear previous selection
-                const selectedDay = document.querySelector(".selected");
-                if (selectedDay) {
-                    selectedDay.classList.remove("selected");
+            const date = new Date(year, month, day);
+            if (selectedDay && date.getDay() === daysOfWeek.indexOf(selectedDay)) {
+                dayElement.classList.add("selected");
+            }
+
+            dayElement.addEventListener("click", function () {
+                const selectedDayElement = document.querySelector(".selected");
+                if (selectedDayElement) {
+                    selectedDayElement.classList.remove("selected");
                 }
 
-                // Highlight selected date
-                dayElement.classList.add("selected");
+                if (!dayElement.classList.contains("selected")) {
+                    dayElement.classList.add("selected");
+                }
+
+                selectedDay = null;
             });
 
             calendarGrid.appendChild(dayElement);
@@ -65,23 +79,24 @@ document.addEventListener("DOMContentLoaded", function() {
             currentYear--;
         }
 
+        renderCalendar();
+    }
+
+    function renderCalendar() {
         createCalendar(currentYear, currentMonth);
     }
 
-    // Get current date
     const currentDate = new Date();
     let currentYear = currentDate.getFullYear();
     let currentMonth = currentDate.getMonth();
 
-    // Create calendar for the current month
-    createCalendar(currentYear, currentMonth);
+    renderCalendar();
 
-    // Add event listeners for buttons
-    prevMonthBtn.addEventListener("click", function() {
+    prevMonthBtn.addEventListener("click", function () {
         changeMonth(-1);
     });
 
-    nextMonthBtn.addEventListener("click", function() {
+    nextMonthBtn.addEventListener("click", function () {
         changeMonth(1);
     });
 });

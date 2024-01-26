@@ -1,0 +1,38 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 20px;
+}
+
+#calendar {
+    display: flex;
+    margin: 20px auto;
+    justify-content: center;
+    align-items: center;
+}
+
+#calendarGrid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.day {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.today {
+    background-color: #aaf;
+}
+
+.selected {
+    background-color: #4caf50;
+    color: white;
+}
+
+button {
+    margin: 10px;
+}

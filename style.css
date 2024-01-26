@@ -28,9 +28,11 @@ body {
     gap: 5px;
 }
 
-.days-head {
+.day-header {
+    cursor: pointer;
     border-width: 2px!important;
     border-color: #aaf!important;
+    border-style: dotted;
     padding: 7px 10px!important;
 }
 .day {
@@ -48,6 +50,9 @@ body {
     background-color: #4caf50;
     color: white;
 }
+/* .selected-day-highlight {
+    background-color: #aaf;
+} */
 
 /* button
 ============================================= */

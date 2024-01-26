@@ -1,14 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Inter', sans-serif;
     text-align: center;
-    margin: 20px;
+}
+.container {
+    width: 100%;
+    max-width: 800px; /* Atur lebar maksimum sesuai kebutuhan */
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 #calendar {
     display: flex;
-    margin: 20px auto;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    margin-bottom: 2rem;
+}
+.title-month {
+    font-size: 1.5rem;
+    font-weight: 600;
 }
 
 #calendarGrid {
@@ -17,6 +28,11 @@ body {
     gap: 5px;
 }
 
+.days-head {
+    border-width: 2px!important;
+    border-color: #aaf!important;
+    padding: 7px 10px!important;
+}
 .day {
     padding: 10px;
     text-align: center;
@@ -33,6 +49,48 @@ body {
     color: white;
 }
 
-button {
-    margin: 10px;
+/* button
+============================================= */
+/* Tombol Dasar */
+.button {
+    display: inline-block;
+    font-size: 16px;
+    padding: 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: 2px solid #3498db;
+    color: #3498db;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+    /* Efek Hover */
+.button:hover {
+    background-color: #3498db;
+    color: #ffffff;
+}
+
+    /* Tombol Sekunder */
+.button.secondary {
+    border-color: #2ecc71;
+    color: #2ecc71;
+}
+
+    /* Efek Hover Tombol Sekunder */
+.button.secondary:hover {
+    background-color: #2ecc71;
+    color: #ffffff;
+}
+
+    /* Tombol Tersier */
+.button.tertiary {
+    border-color: #e74c3c;
+    color: #e74c3c;
+}
+
+    /* Efek Hover Tombol Tersier */
+.button.tertiary:hover {
+    background-color: #e74c3c;
+    color: #ffffff;
 }
